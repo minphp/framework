@@ -16,7 +16,8 @@ class Router implements RouterInterface
         foreach ($routes as $route) {
             if ($route instanceof AbstractRoute) {
                 $this->routes[$route->method()][] = [
-                    $route->getPath(), $route->getPage()
+                    $route->getPath(),
+                    $route->getPage()
                 ];
             }
         }
