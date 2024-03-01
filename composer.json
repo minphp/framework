@@ -1,0 +1,33 @@
+{
+  "name": "minphp/framework",
+  "description": "The MinPhp Framework.",
+  "keywords": ["framework", "minphp"],
+  "license": "MIT",
+  "homepage": "https://minphp.net",
+  "support": {
+    "issues": "https://github.com/minphp/framework/issues",
+    "source": "https://github.com/minphp/framework"
+  },
+  "authors": [
+    {
+      "name": "Daniel Bühner",
+      "email": "daniel@minphp.net"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "composer-runtime-api": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "MinPhp\\": "src/MinPhp/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true
+    }
+  },
+  "minimum-stability": "dev"
+}
