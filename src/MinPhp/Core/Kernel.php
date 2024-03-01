@@ -2,6 +2,7 @@
 
 namespace MinPhp\Core;
 
+use MinPhp\Core\Contracts\KernelInterface;
 use MinPhp\Http\Constants\HttpStatusCode;
 use MinPhp\Http\Contracts\RequestInterface;
 use MinPhp\Http\Contracts\ResponseInterface;
@@ -10,7 +11,7 @@ use MinPhp\Http\Response;
 use MinPhp\Routing\Router\Contracts\RouterInterface;
 use MinPhp\Routing\Router\Router;
 
-class Kernel
+class Kernel implements KernelInterface
 {
     private RouterInterface $router;
     private RequestInterface $request;
@@ -26,8 +27,10 @@ class Kernel
         $this->response = new Response();
     }
 
-    public function run(): void
+    public function run(array $routes): void
     {
+        $this->router->registerRoutes($routes);
+
         $page = $this->router->handleRequest($this->request);
 
         if ($page === null) {

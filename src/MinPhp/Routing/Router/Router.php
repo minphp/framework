@@ -11,10 +11,8 @@ class Router implements RouterInterface
 {
     private array $routes = [];
 
-    public function __construct()
+    public function registerRoutes(array $routes): void
     {
-        $routes = require(__DIR__ . '/../../../routes/web.php');
-
         foreach ($routes as $route) {
             if ($route instanceof AbstractRoute) {
                 $this->routes[$route->method()] = [
