@@ -15,8 +15,8 @@ class Router implements RouterInterface
     {
         foreach ($routes as $route) {
             if ($route instanceof AbstractRoute) {
-                $this->routes[$route->method()] = [
-                    $route->getPath() => $route->getPage()
+                $this->routes[$route->method()][] = [
+                    $route->getPath(), $route->getPage()
                 ];
             }
         }
@@ -29,8 +29,9 @@ class Router implements RouterInterface
                 continue;
             }
 
-            foreach ($routes as $route => $page) {
-                $pattern = preg_replace('/{(\w+)}/', '(?P<$1>[^/]+)', $route);
+            foreach ($routes as [$path, $page]) {
+
+                $pattern = preg_replace('/{(\w+)}/', '(?P<$1>[^/]+)', $path);
                 $pattern = "@^" . $pattern . "$@i";
 
                 if (preg_match($pattern, $request->getUri(), $matches)) {
