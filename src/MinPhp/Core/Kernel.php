@@ -41,6 +41,12 @@ class Kernel implements KernelInterface
 
         $content = $page->render();
 
+        if (defined('MINPHP_START')) {
+            $diff = microtime(true) - MINPHP_START;
+            $milliseconds = number_format($diff * 1000, 2, ',', '.');
+            $content .= "<br><br>Request lifetime: $milliseconds ms";
+        }
+
         $this->response->setBody($content);
         $this->response->send();
     }
